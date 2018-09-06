@@ -424,6 +424,7 @@ wait = {
     'leaveRoom':True,
     'timeline':False,
     'autoAdd':True,
+    'tag':False,
     'tagme':"message tag belum di set",
     'sider1':"CCTV gak barokah amiin..😂😂😂",
     'joingc':"WELCOME",
@@ -436,6 +437,7 @@ wait = {
     "commentOn":False,
     "likeOn":{},
     "wcOn":True,
+    "welcomemsg":True,
     "leftOn":True,
     "alwayRead":False,
     "Removechat":False,
@@ -509,6 +511,14 @@ def cms(string, commands): #/XXX, >XXX, ;XXX, ^XXX, %XXX, $XXX...
 def restart_program():
     python = sys.executable
     os.execl(python, python, * sys.argv)
+def waktu(secs):
+    mins, secs = divmod(secs,60)
+    hours, mins = divmod(mins,60)
+    days, hours = divmod(hours,24)
+    month, days = divmod(days,30)
+    years, month = divmod(month,12)
+    crot, years = divmod(years,2018)
+    return '%02d Tahun\n%02d Bulan\n%02d Hari\n%02d Jam\n%02d Menit\n%02d Detik.' % (years, month, days, hours, mins, secs)
 def download_page(url):
     version = (3,0)
     cur_version = sys.version_info
@@ -797,7 +807,26 @@ def bot(op):
                     pass
                 else:
                     random.choice(KAC).kickoutFromGroup(op.param1, matched_list)
-                    
+        
+	if op.type == 15:
+             try:
+                 vipro.sendImageWithURL(op.param1,"http://dl.profile.line-cdn.net/"+vipro.getContact(op.param2).pictureStatus)
+                 vipro.sendText(op.param1,"Foto Orang Jelek Yang Baperan ✌")
+             except Exception as e:
+                 print e
+                 print ("\n\nNOTIFIED_LEAVE_GROUP\n\n")
+                 return
+        if op.type == 17:
+	   if wait["welcomemsg"] == True:
+              if op.param2 not in Bots:
+                 ginfo = vipro.getGroup(op.param1)
+                 cinfo = vipro.getContact(op.param2)
+                 vipro.sendText(op.param1,str(cinfo.displayName)+"\nSelamat Datang Di Grup "+str(ginfo.name))
+                 vipro.sendImageWithURL(op.param1,"http://dl.profile.line-cdn.net/"+str(cinfo.pictureStatus))
+                 c = Message(to=op.param1, from_=None, text=None, contentType=13)
+                 c.contentMetadata={'mid':op.param2}
+                 vipro.sendMessage(c)
+			
         if op.type == 32:
             if not op.param2 in Bots and admin:
               if not op.param2 in admsa and creator:
@@ -1144,7 +1173,7 @@ def bot(op):
                                   msg.contentMetadata = {'mid': msg.from_}
                                   vipro.sendMessage(msg)
                                   vipro.sendText(msg.to, wait["tagme"])
-                                  break
+                                  break	
             if "MENTION" in msg.contentMetadata.keys() != None:
             	if wait['stickerMention'] == True:
                      mention = ast.literal_eval(msg.contentMetadata["MENTION"])
@@ -1208,6 +1237,40 @@ def bot(op):
                     vipro.removeAllMessages(op.param2)
                 else:
                     vipro.removeAllMessages(op.param2)
+	if op.type == 25:
+                msg = op.message
+            if "@"+vipro.getProfile().displayName in msg.text:
+                 if wait["tagVN"] == True:
+                  aud = ("LINE_A20171224_221320477.m4a")
+                  vipro.sendAudio(msg.to, aud)
+            if "@"+vipro.getProfile().displayName in msg.text:
+                 if wait["tag"] == True:
+                    names = re.findall(r'@(\w+)',msg.text)
+                    mention = ast.literal_eval(msg.contentMetadata['MENTION'])
+                    mentionees = mention['MENTIONEES']
+                    for mention in mentionees:
+                        if mention['M'] in Bots:
+                            xname = cl.getContact(msg.from_).displayName
+                            xmid = cl.getContact(msg.from_).mid
+                            xlen = str(len(xname)+1)
+                            msg.contentType = 0
+                            msg.text = "@"+xname+" "+wait["tagtext"]
+                            msg.contentMetadata ={'MENTION':'{"MENTIONEES":[{"S":"0","E":'+json.dumps(xlen)+',"M":'+json.dumps(msg.from_)+'}]}','EMTVER':'4'}
+                            vipro.sendMessage(msg)
+                            c = Message(to=xmid, from_=None, text=msg.text, contentType=0)
+                            c.contentMetadata={'MENTION':'{"MENTIONEES":[{"S":"0","E":'+json.dumps(xlen)+',"M":'+json.dumps(msg.from_)+'}]}','EMTVER':'4'}
+                            vipro.sendMessage(c)
+	if msg.text in ["Crash","crash"]:
+              dia = ("CACAT MAINANNYA CRASH","Tercyduck ingin ngecrash!","Kamu asu ngecrash terus!","crash cresh crash cresh, bikin hp orang lag anjing!")
+              ngkol = random.choice(dia)
+              vipro.sendText(msg.to,ngkol)
+              vipro.kickoutFromGroup(msg.to,[msg.from_])
+              vipro.sendText(msg.to,"Mampus!")
+            if msg.text in ["!kickall",".kickall","Nuke","Cleanse","Ratakan","Mayhem","MB Mayhem","Kickall","kickall"]:
+                Peringatan = ("Manual kek jangan pake bot.","Cupu lu! Ratain pake bot!","Lain kali liat liat dulu~","ＴＥＲＣＹＤＵＣＫ")
+                Vonis = random.choice(Peringatan)
+                vipro.sendText(msg.to, Vonis)
+                vipro.kickoutFromGroup(msg.to, [msg.from_])	
         if op.type == 25:
             msg = op.message
             if msg.contentType == 13:
@@ -2957,24 +3020,62 @@ def bot(op):
                     wait["detectMention"] = False
                     if wait["lang"] == "JP":
                         vipro.sendText(msg.to,"already OFF")
+            elif msg.text in ["Tag on"]:
+                if wait["tag"] == True:
+                    if wait["lang"] == "JP":
+                        vipro.sendText(msg.to,"already on")
+                    else:
+                        vipro.sendText(msg.to,"turned to on")
+                else:
+                    wait["tag"] = True
+                    if wait["lang"] == "JP":
+                        vipro.sendText(msg.to,"turned to on")
+                    else:
+                        vipro.sendText(msg.to,"already on")      
+            elif msg.text in ["Tag off"]:
+                if wait["tag"] == False:
+                    if wait["lang"] == "JP":
+                        vipro.sendText(msg.to,"already off")
+                    else:
+                        vipro.sendText(msg.to,"turned to off")
+                else:
+                    wait["tag"] = False
+                    if wait["lang"] == "JP":
+                        vipro.sendText(msg.to,"turned to off")
+                    else:
+                        vipro.sendText(msg.to,"already off")
+	elif "Tagvn " in msg.text:
+                cmd = msg.text.replace("Tagvn ","")
+                if cmd == "on":
+                    if wait["tagVN"] == False:
+                        wait["tagVN"] = True
+                        vipro.sendText(msg.to,"「Tag VN on」")
+                    else:
+                        vipro.sendText(msg.to,"「Turned on」")
+                elif cmd == "off":
+                    if wait["tagVN"] == True:
+                        wait["tagVN"] = False
+                        vipro.sendText(msg.to,"「Tag VN off」")
+                    else:
+                        vipro.sendText(msg.to,"「Turned off」")
             elif msg.text in ["Notag:on"]:
               if msg.from_ in creator + admin:
                 if wait["kickMention"] == True:
                     if wait["lang"] == "JP":
-                        ki.sendText(msg.to,"☠️DANGER TAG KICK ON☠️")
+                        vipro.sendText(msg.to,"☠️DANGER TAG KICK ON☠️")
                 else:
                     wait["kickMention"] = True
                     if wait["lang"] == "JP":
-                        ki.sendText(msg.to,"already ON")
+                        vipro.sendText(msg.to,"already ON")
             elif msg.text in ["Notag:off"]:
               if msg.from_ in creator + admin:
                 if wait["kickMention"] == False:
                    if wait["lang"] == "JP":
-                        ki.sendText(msg.to,"SELF PROTECT TAG OFF ✔")
+                        vipro.sendText(msg.to,"SELF PROTECT TAG OFF ✔")
                 else:
                     wait["kickMention"] = False
                     if wait["lang"] == "JP":
-                        ki.sendText(msg.to,"already turn OF")
+                        vipro.sendText(msg.to,"already turn OF")
             elif msg.text.lower() == 'Clock:on':
               if msg.from_ in creator + admin:
                 if wait["clock"] == True:
