@@ -20,7 +20,7 @@ else:
     import urllib.parse
 
 owner = VIPRO.LINE() #Akun Utama
-owner.login(token="token")
+owner.login(token="EwmI8UdzrS54O0qfo3ce.mDIRQD+WthuKlYOGL7ITRG.9/vatUMsaFypyEOLQ/3EKDAHYP6HLi6VVnccPQk6KcA=")
 owner.loginResult()
     
 vipro = VIPRO.LINE()
@@ -426,10 +426,10 @@ wait = {
     'autoAdd':True,
     'tag':False,
     'tagVN':False,
-    'tagme':"message tag belum di set",
+    'tagme':"sekarang ngeTAG nanti pasti CALLING..😂😂😂",
     'sider1':"CCTV gak barokah amiin..😂😂😂",
-    'joingc':"WELCOME",
-    'leftgc':"Turut Berduka Cita... 😢😢😢",
+    'joingc':"WELCOME SAYANG",
+    'leftgc':"Turut Berduka Cita ya... 😢😢😢",
     "stickerMention":False,
     'message':"THANKS FOR ADD ME\nⓑⓨ「ᴄᴀʟᴏɴ ᴀʟᴍᴀʀʜᴜᴍ™」",
     "lang":"JP",
@@ -437,6 +437,7 @@ wait = {
     "comment1":"ᴀᴜᴛᴏ ʟɪᴋᴇ ⓑⓨ「ᴄᴀʟᴏɴ ᴀʟᴍᴀʀʜᴜᴍ™」",
     "commentOn":False,
     "likeOn":{},
+    "invite":{},
     "wcOn":True,
     "welcomemsg":True,
     "leftOn":True,
@@ -469,11 +470,29 @@ wait = {
     "cyduk":{},
     "pname":{},
     "pro_name":{},
-    "copy":False,
-    "copy2":False,
-    "status":False,
-    "target":{}
-    }
+    "userAgent": [
+		"Mozilla/5.0 (X11; U; Linux i586; de; rv:5.0) Gecko/20100101 Firefox/5.0",
+		"Mozilla/5.0 (X11; U; Linux amd64; rv:5.0) Gecko/20100101 Firefox/5.0 (Debian)",
+		"Mozilla/5.0 (X11; U; Linux amd64; en-US; rv:5.0) Gecko/20110619 Firefox/5.0",
+		"Mozilla/5.0 (X11; Linux) Gecko Firefox/5.0",
+		"Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0 FirePHP/0.5",
+		"Mozilla/5.0 (X11; Linux x86_64; rv:5.0) Gecko/20100101 Firefox/5.0 Firefox/5.0",
+		"Mozilla/5.0 (X11; Linux x86_64) Gecko Firefox/5.0",
+		"Mozilla/5.0 (X11; Linux ppc; rv:5.0) Gecko/20100101 Firefox/5.0",
+		"Mozilla/5.0 (X11; Linux AMD64) Gecko Firefox/5.0",
+		"Mozilla/5.0 (X11; FreeBSD amd64; rv:5.0) Gecko/20100101 Firefox/5.0",
+		"Mozilla/5.0 (Windows NT 6.2; WOW64; rv:5.0) Gecko/20100101 Firefox/5.0",
+		"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:5.0) Gecko/20110619 Firefox/5.0",
+		"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:5.0) Gecko/20100101 Firefox/5.0",
+		"Mozilla/5.0 (Windows NT 6.1; rv:6.0) Gecko/20100101 Firefox/5.0",
+		"Mozilla/5.0 (Windows NT 6.1.1; rv:5.0) Gecko/20100101 Firefox/5.0",
+		"Mozilla/5.0 (Windows NT 5.2; WOW64; rv:5.0) Gecko/20100101 Firefox/5.0",
+		"Mozilla/5.0 (Windows NT 5.1; U; rv:5.0) Gecko/20100101 Firefox/5.0",
+		"Mozilla/5.0 (Windows NT 5.1; rv:2.0.1) Gecko/20100101 Firefox/5.0",
+		"Mozilla/5.0 (Windows NT 5.0; WOW64; rv:5.0) Gecko/20100101 Firefox/5.0",
+		"Mozilla/5.0 (Windows NT 5.0; rv:5.0) Gecko/20100101 Firefox/5.0"
+	],
+}
 wait2 = {
     'readPoint':{},
     'readMember':{},
@@ -520,6 +539,18 @@ def waktu(secs):
     years, month = divmod(month,12)
     crot, years = divmod(years,2018)
     return '%02d Tahun\n%02d Bulan\n%02d Hari\n%02d Jam\n%02d Menit\n%02d Detik.' % (years, month, days, hours, mins, secs)
+def translate(to_translate, to_language="auto", language="auto"):
+    bahasa_awal = "auto"
+    bahasa_tujuan = to_language
+    kata = to_translate
+    url = 'https://translate.google.com/m?sl=%s&tl=%s&ie=UTF-8&prev=_m&q=%s' % (bahasa_awal, bahasa_tujuan, kata.replace(" ", "+"))
+    agent = {'User-Agent':'Mozilla/5.0'}
+    cari_hasil = 'class="t0">'
+    request = urllib2.Request(url, headers=agent)
+    page = urllib2.urlopen(request).read()
+    result = page[page.find(cari_hasil)+len(cari_hasil):]
+    result = result.split("<")[0]
+    return result
 def download_page(url):
     version = (3,0)
     cur_version = sys.version_info
@@ -571,6 +602,29 @@ def _images_get_all_items(page):
             page = page[end_content:]
     return items
     
+def mention(to,nama):
+    aa = ""
+    bb = ""
+    strt = int(12)
+    akh = int(12)
+    nm = nama
+    #print nm
+    for mm in nm:
+        akh = akh + 2
+        aa += """{"S":"""+json.dumps(str(strt))+""","E":"""+json.dumps(str(akh))+""","M":"""+json.dumps(mm)+"},"""
+        strt = strt + 6
+        akh = akh + 4
+        bb += "► @c \n"
+    aa = (aa[:int(len(aa)-1)])
+    msg = Message()
+    msg.to = to
+    msg.text = "「Mention」\n"+bb
+    msg.contentMetadata = {'MENTION':'{"MENTIONEES":['+aa+']}','EMTVER':'4'}
+    #print msg
+    try:
+         vipro.sendMessage(msg)
+    except Exception as error:
+        print error
 def summon(to, nama):
     aa = ""
     bb = ""
@@ -697,6 +751,16 @@ def sendAudio(self, to_, path):
             self.sendAudio(to_, path)
         except Exception as e:
             raise (e)
+def removeAllMessages(self, lastMessageId):
+     return vipro.removeAllMessages(0, lastMessageId)
+def sendText(self, Tomid, text):
+        msg = Message()
+        msg.to = Tomid
+        msg.text = text
+def sendMessage(self, Tomid, msg):
+        msg = Message()
+        msg.to = Tomid
+        msg.msg = msg
 def sendMessage(to, text, contentMetadata={}, contentType=0):
     mes = Message()
     mes.to, mes.from_ = to, profile.mid
@@ -962,28 +1026,28 @@ def bot(op):
         if op.type == 19:
             if mid in op.param3:
                 wait["blacklist"][op.param2] = True
-            #if op.param2 not in Bots + admin + creator:
-             #     if wait["Ghost"] == True:  
-              #     try:
-               #        klist=[vipro,ki,ki2,ki3,ki4,ki5]
-                #       kicker = random.choice(klist)
-                 #      G = kicker.getGroup(op.param1)
-                  #     G.preventJoinByTicket = False
-                  #     kicker.updateGroup(G)
-                  #     Ticket = kicker.reissueGroupTicket(op.param1)
-                  #     ki10acceptGroupInvitationByTicket(op.param1,Ticket)
-                  #     time.sleep(0.0002)
-                  #     X = kicker.getGroup(op.param1)             
-                  #     X.preventJoinByTicket = True
-                 #      ki10.kickoutFromGroup(op.param1,[op.param2])
-                 #      kicker.kickoutFromGroup(op.param1,[op.param2])
-                 #      ki10.leaveGroup(op.param1)
-                  #     kicker.updateGroup(X)
-                  # except Exception, e:
-                   #         print e
-           # if op.param2 not in Bots:
-            #  random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
-             # vipro.inviteIntoGroup(op.param1,[op.param3])
+            if op.param2 not in Bots + admin + creator:
+                  if wait["Ghost"] == True:  
+                   try:
+                       klist=[vipro,ki,ki2,ki3,ki4,ki5]
+                       kicker = random.choice(klist)
+                       G = kicker.getGroup(op.param1)
+                       G.preventJoinByTicket = False
+                       kicker.updateGroup(G)
+                       Ticket = kicker.reissueGroupTicket(op.param1)
+                       ki10acceptGroupInvitationByTicket(op.param1,Ticket)
+                       time.sleep(0.0002)
+                       X = kicker.getGroup(op.param1)             
+                       X.preventJoinByTicket = True
+                       ki10.kickoutFromGroup(op.param1,[op.param2])
+                       kicker.kickoutFromGroup(op.param1,[op.param2])
+                       ki10.leaveGroup(op.param1)
+                       kicker.updateGroup(X)
+                   except Exception, e:
+                            print e
+            if op.param2 not in Bots:
+              random.choice(KAC).kickoutFromGroup(op.param1,[op.param2])
+              vipro.inviteIntoGroup(op.param1,[op.param3])
             if op.param2 not in Bots + admin + creator:
                     try:
                     	gs = vipro.getGroup(op.param1)
@@ -1434,7 +1498,7 @@ def bot(op):
                 path = str(cu)
                 image = "http://dl.profile.line-cdn.net/" + contact.pictureStatus
                 try:
-                    vipro.sendText(msg.to,"Nama :\n" + contact.displayName + "\n\nBio :\n" + contact.statusMessage)
+                    vipro.sendText(msg.to,"Nama :" + contact.displayName + "\nBio :" + contact.statusMessage)
                     vipro.sendText(msg.to,"Profile Picture " + contact.displayName)
                     vipro.sendImageWithURL(msg.to,image)
                     vipro.sendText(msg.to,"Cover " + contact.displayName)
@@ -1456,7 +1520,7 @@ def bot(op):
                         txt += u'@Krampus\n'
                     msg.text = txt
                     msg.contentMetadata = {u'MENTION':json.dumps({"MENTIONEES":d})}
-                    ki.sendMessage(msg) 
+                    vipro.sendMessage(msg) 
                     
 
             elif "Github " in msg.text:
@@ -2014,7 +2078,7 @@ def bot(op):
                     vipro.updateProfile(profile)
                     vipro.sendText(msg.to,"􀜁􀇔􏿿Update Bio\n👉" + string + "👈")
 #------------------------------------------------------------------------------------------#
-            elif "Bname " in msg.text:
+            elif "Myname " in msg.text:
               if msg.from_ in creator + admin:
                 string = msg.text.replace("Bname ","")
                 if len(string.decode('utf-8')) <= 20:
@@ -2586,6 +2650,27 @@ def bot(op):
                         vipro.sendText(msg.to,"Off ✖")
                     else:
                         vipro.sendText(msg.to,"Off ✖")
+            elif "Sider on" in msg.text:
+	      if msg.from_ in admin:
+                try:
+                    del cctv['point'][msg.to]
+                    del cctv['sidermem'][msg.to]
+                    del cctv['cyduk'][msg.to]
+                except:
+                    pass
+                cctv['point'][msg.to] = msg.id
+                cctv['sidermem'][msg.to] = ""
+                cctv['cyduk'][msg.to]=True
+                wait["Sider"] = True
+                vipro.sendText(msg.to,"Siap On Cek Sider")
+            elif "Sider off" in msg.text:
+	      if msg.from_ in admin:
+                if msg.to in cctv['point']:
+                    cctv['cyduk'][msg.to]=False
+                    wait["Sider"] = False
+                    vipro.sendText(msg.to, "Cek Sider Off")
+                else:
+                    vipro.sendText(msg.to, "Heh Belom Di Set")
             elif msg.text.lower() == 'set':
               if msg.from_ in creator + admin:
                 md = "╔══「ᴀʜʟɪ ᴋᴜʙᴜʀ™」══╗\n══════════════════\n"
@@ -2982,27 +3067,6 @@ def bot(op):
                 if wait['Removechat'] == False:
                     if wait["lang"] == "JP":
                         pass
-            elif "Sider on" in msg.text:
-	#      if msg.toType == 2:
-                try:
-                    del cctv['point'][msg.to]
-                    del cctv['sidermem'][msg.to]
-                    del cctv['cyduk'][msg.to]
-                except:
-                    pass
-                cctv['point'][msg.to] = msg.id
-                cctv['sidermem'][msg.to] = ""
-                cctv['cyduk'][msg.to]=True
-                wait["Sider"] = True
-                vipro.sendText(msg.to,"Siap On Cek Sider")
-            elif "Sider off" in msg.text:
-	#      if msg.toType == 2:
-                if msg.to in cctv['point']:
-                    cctv['cyduk'][msg.to]=False
-                    wait["Sider"] = False
-                    vipro.sendText(msg.to, "Cek Sider Off")
-                else:
-                    vipro.sendText(msg.to, "Heh Belom Di Set")
             elif msg.text in ["Autorespon on","Autorespon:on","Respon on","Respon:on"]:
               if msg.from_ in creator + admin:
                 if wait["detectMention"] == True:
@@ -3780,9 +3844,9 @@ def bot(op):
                         vipro.sendMessage(M)
 
 #-------------------------------------------------
-	    elif "Spam @" in msg.text:
+	    elif "Hilih @" in msg.text:
 	      if msg.from_ in creator:
-                _name = msg.text.replace("Spam @","")
+                _name = msg.text.replace("Hilih @","")
                 _nametarget = _name.rstrip(' ')
                 gs = vipro.getGroup(msg.to)
                 for g in gs.members:
@@ -3900,7 +3964,42 @@ def bot(op):
                        ki9.sendText(g.mid,"Your Account Has Been Spammed !")
                        vipro.sendText(msg.to, "Succes")
                        print " Spammed !"
-#--------------------------------------------------------------------------
+            
+              elif "Panggil @" in msg.text:
+                if msg.from_ in admin:
+                    _name = msg.text.replace("Panggil @","")
+                    _nametarget = _name.rstrip(' ')
+                    gs = vipro.getGroup(msg.to)
+                    for g in gs.members:
+                        if _nametarget == g.displayName:
+                            xname = g.displayName
+                            xlen = str(len(xname)+1)
+                            msg.contentType = 0
+                            msg.text = "@"+xname+" "
+                            msg.contentMetadata ={"MENTION":'{"MENTIONEES":[{"S":"0","E":'+json.dumps(xlen)+',"M":'+json.dumps(g.mid)+'}]}','EMTVER':'4'}
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                            vipro.sendMessage(msg)
+                        else:
+                            pass
+#---------------------------------------------------------------
 #-----------------------------------------------------------
             elif "Mban:" in msg.text:
               if msg.from_ in creator + admin:
@@ -4375,8 +4474,8 @@ def bot(op):
 #------------------------------------------------------------
             elif msg.text in ["Admin","admin"]:
                 msg.contentType = 13
-                admin1 = "u07abdfb9d1644326c65c13f9727b10d7"
-                admin2 = "u4e49fa7389c0333bb7ff38063552791b"
+                admin1 = "ub0ff92e9820f6b82a2f0b81d6758c2fb"
+                admin2 = "u07abdfb9d1644326c65c13f9727b10d7"
                 admin3 = "u379bb03ea71909b8a0300b1af01fb6b0"
                 admin4 = "u3430513d5b0d0400132ad9db840c5095"
                 admin5 = "u085311ecd9e3e3d74ae4c9f5437cbcb5"
@@ -5478,7 +5577,7 @@ def bot(op):
         if op.type == 5:
             if wait["autoAdd"] == True:
             	c = Message(to=op.param1, from_=None, text=None, contentType=13)
-                c.contentMetadata={'mid':'uda936836a9869eb86ec8ab992a4e8979'}
+                c.contentMetadata={'mid':'u07abdfb9d1644326c65c13f9727b10d7'}
                 vipro.sendImageWithURL(op.param1,"http://dl.profile.line-cdn.net/0h9lRSzNuMZkNvKkqg8-AZFFNvaC4YBGALF0t9dhh9OHZBTihABk0hcU55bCdEE3UcVhh6dx4jOXdD")
                 if (wait["message"] in [""," ","\n",None]):
                     pass
@@ -5564,6 +5663,7 @@ def bot(op):
                 vipro.sendText
         if op.type == 17:
           if wait["wcOn"] == True:
+             if op.param2 not in Bots:
             	ginfo = vipro.getGroup(op.param1)
             	contact = vipro.getContact(op.param2)
             	c = Message(to=op.param1, from_=None, text=None, contentType=13)
@@ -5574,6 +5674,7 @@ def bot(op):
             	print ("MEMBER JOIN TO GROUP")
         if op.type == 15:
           if wait["leftOn"] == True:
+             if op.param2 not in Bots:
             	c = Message(to=op.param1, from_=None, text=None, contentType=13)
             	c.contentMetadata={'mid':op.param2}
             	vipro.sendMessage(c)
@@ -5593,7 +5694,36 @@ def bot(op):
                 else:
                     pass
             except:
-                pass           
+                pass
+	if op.type == 55:
+            try:
+                if cctv['cyduk'][op.param1]==True:
+                        if op.param1 in cctv['point']:
+                            Name = vipro.getContact(op.param2).displayName
+                            Np = vipro.getContact(op.param2).pictureStatus
+                            if Name in cctv['sidermem'][op.param1]:
+                                pass
+                            else:
+                                cctv['sidermem'][op.param1] += "\n• " + Name
+                                if " " in Name:
+                                    nick = Name.split(' ')
+                                    if len(nick) == 2:
+                                        vipro.sendText(op.param1, "Hallo.. " + "☞ " + nick[0] + " ☜" + "\nNah jangan ngintip mulu 😁. . .\nGabung Chat yux 😉")
+                                        vipro.sendImageWithURL(op.param1, "http://dl.profile.line-cdn.net/" + Np)
+                                    else:
+                                        vipro.sendText(op.param1, "Hallo.. " + "☞ " + nick[1] + " ☜" + "\nJangan ngintip.. 😏. . .\nMasuk  ayox... 😆😂😛")
+                                        vipro.sendImageWithURL(op.param1, "http://dl.profile.line-cdn.net/" + Np)
+                                else:
+                                    vipro.sendText(op.param1, "hallo.. " + "☞ " + Name + " ☜" + "\nJangan ngintip aja\nMasuk gabung chat ya...😋 😝")
+                                    vipro.sendImageWithURL(op.param1, "http://dl.profile.line-cdn.net/" + Np)
+                        else:
+                            pass
+                else:
+                    pass
+            except:
+                pass
+        else:
+            pass
         if op.type == 59:
             print op
     except Exception as error:
