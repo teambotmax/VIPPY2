@@ -1,5 +1,7 @@
 ### VIPY2=BOT LINE 1 OWNER + 1 ADMIN SELF 9 ASSISTS [1 GHOST]
 
+## menggunakan token chrome,untuk ambil token run https://github.com/PHIEZUKE/QR-token
+
 # SEMUA AKAN MATI PADA WAKTUNYA
 BOT PROTECT CREATOR & ADMIN
 ------
