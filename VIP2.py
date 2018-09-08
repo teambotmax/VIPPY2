@@ -52,15 +52,15 @@ ki6.login(token="EwCdMAea193gNSH6F7F6.cVv4a+phTNQfgRMhYCmA9G./QtTfiU3ERHOVZTHI99
 ki6.loginResult()
 
 ki7 = VIPRO.LINE()
-ki7.login(token="token")
+ki7.login(token="Ew0PytwMhzCGmyIlySpd.ONoQPJsyunccwSbSzgUGhq.zp6XpGNMqdWuAFSmwmE3pwrU9PYAFC782AfuL0CuyNM=")
 ki7.loginResult()
 
 ki8 = VIPRO.LINE()
-ki8.login(token="token")
+ki8.login(token="Ew3rie0TZYaquxx9eAL8.HCAX2+2KKOB/5O8Pwk18Ea.Csx65UYErM2J99tfAiJ0ubON5Hux4r2ItNG2Byys4Eg=")
 ki8.loginResult()
 
 ki9 = VIPRO.LINE()
-ki9.login(token="token")
+ki9.login(token="EwyjqiFbi1zDEOGQI12c.PCLzGUGhM7XEnkYVxd3K7a.SHBsG2G5A0hKpsB5+0WK7nHZ25ETCPWC0W1R1cNq2FM=")
 ki9.loginResult()
 
 ki10 = VIPRO.LINE() #Ghost
