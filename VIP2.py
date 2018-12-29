@@ -67,7 +67,7 @@ ki10 = VIPRO.LINE() #Ghost
 ki10.login(token="EwmyEfkyrpOiKbXexm86.7Zz8lKzA4aCifjnJjRjKvG.MdaYVkBGSj+Dn9cV7czq4sh6ym+IrH4OIJuzIXaHbc4=")
 ki10.loginResult()
 
-print "═「🅻🅾🅶🅸🅽 🆂🆄🅲🅲🅴🆂 ᴄᴀʟᴏɴ ᴀʟᴍᴀʀʜᴜᴍ™」═"
+print "═「 BY SELFBOT-BY:MAX 」═"
 reload(sys)
 sys.setdefaultencoding('utf-8')
 helpMenu="""╔═「ᴀʜʟɪ ᴋᴜʙᴜʀ™」═╗
@@ -420,7 +420,7 @@ backup.pictureStatus = contact.pictureStatus
 wait = {
     'contact':False,
     'autoJoin':True,
-    'autoCancel':{"on":True,"members":1},
+    'autoCancel':{"on":True,"members":10},
     'leaveRoom':True,
     'timeline':False,
     'autoAdd':True,
@@ -433,9 +433,9 @@ wait = {
     "stickerMention":False,
     'message':"THANKS FOR ADD ME\nⓑⓨ「ᴄᴀʟᴏɴ ᴀʟᴍᴀʀʜᴜᴍ™」",
     "lang":"JP",
-    "comment":"🅃🄷🄰🄽🄺🅂 🄵🄾🅁 🄰🄳🄳 🄼🄴 🄰🅂 🅈🄾🅄🅁 🄵🅁🄸🄴🄽🄳 ᴄᴀʟᴏɴ ᴀʟᴍᴀʀʜᴜᴍ™",
-    "comment1":"ᴀᴜᴛᴏ ʟɪᴋᴇ ⓑⓨ「ᴄᴀʟᴏɴ ᴀʟᴍᴀʀʜᴜᴍ™」",
-    "commentOn":False,
+    "comment":"🅃🄷🄰🄽🄺🅂 🄵🄾🅁 🄰🄳🄳 🄼🄴 🄰🅂 🅈🄾🅄🅁 🄵🅁🄸🄴🄽🄳 SELFBOT-BY:MAX",
+    "comment1":"ᴀᴜᴛᴏ ʟɪᴋᴇ ⓑⓨ「 SELFBOT-BY:MAX 」",
+    "commentOn":True,
     "likeOn":{},
     "invite":{},
     "wcOn":True,
@@ -458,10 +458,10 @@ wait = {
     "blacklist":{},
     "wblacklist":False,
     "dblacklist":False,
-    "protect":False,
-    "cancelprotect":False,
-    "inviteprotect":False,
-    "linkprotect":False,
+    "protect":True,
+    "cancelprotect":True,
+    "inviteprotect":True,
+    "linkprotect":True,
     "atjointicket":True,
     "potoMention":{},
     "prankName":True,
