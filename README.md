@@ -23,8 +23,8 @@ Di C9io :
 - Ketik -> `sudo pip install bs4`
 - Ketik -> `sudo pip install gtts`
 - Ketik -> `sudo pip install googletrans`
-- Ketik -> `git clone https://github.com/PHIEZUKE/VIPY2`
-- Ketik -> `cd VIPY2`
+- Ketik -> `git clone https://github.com/0954517662/VIPPY2`
+- Ketik -> `cd VIPPY2`
 - Ketik -> `python VIP2.py`
 
 Di Termux :
@@ -38,9 +38,9 @@ Di Termux :
 - Ketik -> `pip2 install gtts`
 - Ketik -> `pip2 install beautifulsoup`
 - Ketik -> `pip2 install googletrans`
-- Ketik -> `git clone https://github.com/PHIEZUKE/VIPY2`
-- Ketik -> `cd VIPY2`
-- Ketik -> `python2 VIP2.py`
+- Ketik -> `git clone https://github.com/0954517662/VIPPY2`
+- Ketik -> `cd VIPPY2`
+- Ketik -> `python VIP2.py`
 
 # THANK'S TO :
 ALLAH SWT
